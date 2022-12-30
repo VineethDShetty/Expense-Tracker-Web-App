@@ -15,9 +15,15 @@ function addTransaction(e){
     if (text.value =="" || amount.value =="" ){
         alert("Please add amount and text ")
     }
+    
     else{
         if(ttype.value=="debit"){
-
+            console.log(money_plus.value , money_minus.value, amount.value)
+            if(money_plus.value-money_minus.value-amount.value<0){
+                alert("No balance")
+            }
+            else{
+            console.log(amount.value)
             var transaction={
                 transactionid:Math.random()*100000,
                 text:text.value,
@@ -25,6 +31,7 @@ function addTransaction(e){
                 ttype:ttype.value
             }
             amount1=amount1-parseFloat(amount.value)
+        }
         }
         else{
             var transaction={
@@ -67,11 +74,12 @@ function init(){
           else{
             income+=parseFloat(list1[i].amount)
           }
-
-          money_minus.innerText=`${expense}`
-          money_plus.innerText=`${income}`
-          balance[0].innerHTML=`${income-expense}`
+          console.log(expense,income)
+          
     }
+    money_minus.innerText=`${expense}`
+    money_plus.innerText=`${income}`
+    balance[0].innerHTML=`${income-expense}`
 }
 
 function removeTransaction(id){
